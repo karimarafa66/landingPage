@@ -36,6 +36,11 @@ mock/
 ├── index.html          # Main HTML structure
 ├── style.css           # Styling and responsive design
 ├── script.js           # Interactive functionality
+├── deploy.js           # Deployment helper script
+├── package.json        # Project configuration and npm scripts
+├── .nojekyll           # Prevents GitHub Pages from using Jekyll
+├── .gitattributes      # Git file attributes configuration
+├── .gitignore          # Git ignore configuration
 └── README.md           # Project documentation
 ```
 
@@ -45,6 +50,52 @@ mock/
 - **CSS3**: Modern styling with custom properties and grid/flexbox
 - **Vanilla JavaScript**: Interactive functionality without frameworks
 - **Font Awesome**: Icon library for visual elements
+
+## 🚀 Deployment
+
+### Local Development
+
+1. **Install dependencies**:
+   ```
+   npm install
+   ```
+
+2. **Start local development server**:
+   ```
+   npm start
+   ```
+   This will start a local server using the `serve` package.
+
+### GitHub Pages Deployment
+
+This project includes tools to ensure proper deployment on GitHub Pages:
+
+1. **Run the deployment helper script**:
+   ```
+   npm run deploy
+   ```
+   or
+   ```
+   node deploy.js
+   ```
+   This script:
+   - Ensures all image paths use relative URLs (without leading slashes)
+   - Creates/verifies the .nojekyll file exists
+   - Prepares your project for GitHub Pages deployment
+
+2. **Common GitHub Pages Issues Fixed**:
+   - **Image Path Issues**: The script fixes absolute paths that cause images not to display
+   - **Jekyll Processing**: The .nojekyll file prevents GitHub's Jekyll processor from altering your files
+
+3. **Manual Checks**:
+   - Always ensure image paths use the format `images/filename.jpg` (not `/images/filename.jpg`)
+   - Use relative paths for all resources
+
+4. **Deployment Steps**:
+   - Commit all changes to your repository
+   - Push to GitHub
+   - Enable GitHub Pages in your repository settings (Settings > Pages)
+   - Select the branch you want to deploy
 
 ## 🎨 Color Scheme
 

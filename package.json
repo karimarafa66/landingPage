@@ -1,0 +1,20 @@
+{
+  "name": "web-developer-landing-page",
+  "version": "1.0.0",
+  "description": "Professional landing page for web developers",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve",
+    "deploy": "node deploy.js"
+  },
+  "keywords": [
+    "landing-page",
+    "web-developer",
+    "portfolio"
+  ],
+  "author": "John Smith",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
