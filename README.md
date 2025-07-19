@@ -36,7 +36,6 @@ mock/
 ├── index.html          # Main HTML structure
 ├── style.css           # Styling and responsive design
 ├── script.js           # Interactive functionality
-├── images/             # Image assets
 └── README.md           # Project documentation
 ```
 
@@ -46,61 +45,6 @@ mock/
 - **CSS3**: Modern styling with custom properties and grid/flexbox
 - **Vanilla JavaScript**: Interactive functionality without frameworks
 - **Font Awesome**: Icon library for visual elements
-- **Bootstrap**: For responsive layout components
-- **AOS**: Animate On Scroll library for animations
-
-## 🌐 Free Hosting Options
-
-This static website can be easily deployed to several free hosting platforms. Below are step-by-step instructions for the most popular options:
-
-### 1. GitHub Pages
-
-GitHub Pages is a free hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub.
-
-**Steps to deploy:**
-
-1. **Create a GitHub account** if you don't have one at [github.com](https://github.com)
-2. **Create a new repository** named `yourusername.github.io` (replace 'yourusername' with your actual GitHub username)
-3. **Upload your files:**
-   - Click on the "Add file" button and select "Upload files"
-   - Drag and drop all the files from your project folder
-   - Commit the changes
-4. **Enable GitHub Pages:**
-   - Go to repository Settings > Pages
-   - Under "Source", select "main" branch
-   - Click Save
-5. **Access your website** at `https://yourusername.github.io`
-
-### 2. Netlify
-
-Netlify offers a more robust platform with additional features like form handling.
-
-**Steps to deploy:**
-
-1. **Create a Netlify account** at [netlify.com](https://netlify.com)
-2. **Deploy your site:**
-   - Click "New site from Git" if you have your code on GitHub, GitLab, or Bitbucket
-   - OR click "Sites" then "Drag and drop" your entire project folder onto the designated area
-3. **Configure your site** (if needed):
-   - Set the build command (leave blank for static HTML)
-   - Set the publish directory (usually the root folder ".")
-4. **Deploy the site**
-5. **Access your website** at the URL provided by Netlify (you can customize this in site settings)
-
-### 3. Vercel
-
-Vercel is another excellent platform for static sites with a generous free tier.
-
-**Steps to deploy:**
-
-1. **Create a Vercel account** at [vercel.com](https://vercel.com)
-2. **Install Vercel CLI** (optional) or use the web interface
-3. **Deploy your site:**
-   - Click "New Project"
-   - Import from Git repository or upload your files
-   - Configure project settings (usually defaults work for static sites)
-4. **Deploy**
-5. **Access your website** at the URL provided by Vercel
 
 ## 🎨 Color Scheme
 

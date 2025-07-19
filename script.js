@@ -301,146 +301,71 @@ function addImageLoadingEffect() {
 // Initialize image loading effects
 addImageLoadingEffect();
 
-// Tech Stack Slider functionality
+// Tech Stack Slider functionality with Swiper.js
 function initTechStackSlider() {
-    const slider = document.querySelector('.tech-stack-slider');
-    const slides = document.querySelectorAll('.tech-stack-slide');
+    // Check if the tech-stack-swiper element exists
+    const swiperElement = document.querySelector('.tech-stack-swiper');
+    if (!swiperElement) return;
+    
+    // Initialize Swiper
+    const techStackSwiper = new Swiper('.tech-stack-swiper', {
+        // Enable loop mode for infinite sliding
+        loop: true,
+        
+        // Auto play with 3 second delay between transitions
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        
+        // Enable smooth transitions
+        effect: 'slide',
+        speed: 800,
+        
+        // Responsive breakpoints
+        breakpoints: {
+            // When window width is >= 320px
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            // When window width is >= 480px
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            // When window width is >= 768px
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            // When window width is >= 992px
+            992: {
+                slidesPerView: 4,
+                spaceBetween: 40
+            }
+        },
+        
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    
+    // Add event listeners for custom navigation buttons if needed
     const prevBtn = document.querySelector('.slider-prev');
     const nextBtn = document.querySelector('.slider-next');
     
-    if (!slider || slides.length === 0) return;
-    
-    let currentIndex = 0;
-    let slideWidth = 33.333; // Percentage width of each slide
-    const visibleSlides = 3; // Number of slides visible at once
-    const totalSlides = slides.length;
-    
-    // Center the active slide
-    function centerActiveSlide() {
-        // Clone slides for infinite scrolling if needed
-        if (slider.querySelectorAll('.tech-stack-slide').length === totalSlides) {
-            // Clone slides for infinite scrolling effect
-            slides.forEach(slide => {
-                const clone = slide.cloneNode(true);
-                slider.appendChild(clone);
-            });
-        }
-    }
-    
-    // Initialize infinite scrolling
-    centerActiveSlide();
-    
-    // Go to specific slide with smooth transition
-    function goToSlide(index) {
-        // For infinite scrolling, we use modulo to wrap around
-        currentIndex = index;
-        
-        // Apply smooth transition
-        slider.style.transition = 'transform 0.5s ease';
-        updateSliderPosition();
-        
-        // Reset position without animation when reaching the end
-        if (currentIndex >= totalSlides) {
-            setTimeout(() => {
-                slider.style.transition = 'none';
-                currentIndex = 0;
-                updateSliderPosition();
-                setTimeout(() => {
-                    slider.style.transition = 'transform 0.5s ease';
-                }, 50);
-            }, 500);
-        } else if (currentIndex < 0) {
-            setTimeout(() => {
-                slider.style.transition = 'none';
-                currentIndex = totalSlides - 1;
-                updateSliderPosition();
-                setTimeout(() => {
-                    slider.style.transition = 'transform 0.5s ease';
-                }, 50);
-            }, 500);
-        }
-    }
-    
-    // Update slider position based on current index
-    function updateSliderPosition() {
-        const offset = -currentIndex * slideWidth;
-        slider.style.transform = `translateX(${offset}%)`;
-    }
-    
-    // Next slide
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        goToSlide(currentIndex - 1);
-    }
-    
-    // Event listeners for controls
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    
-    // Auto-advance slides every 5 seconds
-    let slideInterval = setInterval(nextSlide, 5000);
-    
-    // Pause auto-advance on hover
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
-    
-    // Resume auto-advance when mouse leaves
-    slider.addEventListener('mouseleave', () => {
-        slideInterval = setInterval(nextSlide, 5000);
-    });
-    
-    // Handle touch events for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    slider.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(slideInterval);
-    }, { passive: true });
-    
-    slider.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        slideInterval = setInterval(nextSlide, 5000);
-    }, { passive: true });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            nextSlide(); // Swipe left, go to next
-        } else if (touchEndX > touchStartX + swipeThreshold) {
-            prevSlide(); // Swipe right, go to previous
-        }
-    }
-    
-    // Adjust slider for responsive design
-    function adjustSlider() {
-        if (window.innerWidth < 768) {
-            slideWidth = 100; // On mobile, show one slide at a time
-        } else if (window.innerWidth < 992) {
-            slideWidth = 50; // On tablets, show two slides
-        } else {
-            slideWidth = 33.333; // On desktop, show three slides
-        }
-        
-        // Update slide widths
-        slides.forEach(slide => {
-            slide.style.flex = `0 0 ${slideWidth}%`;
-            slide.style.maxWidth = `${slideWidth}%`;
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            techStackSwiper.slidePrev();
         });
-        
-        // Reposition slider to current slide
-        goToSlide(currentIndex);
     }
     
-    // Initial adjustment
-    adjustSlider();
-    
-    // Adjust on window resize
-    window.addEventListener('resize', adjustSlider);
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            techStackSwiper.slideNext();
+        });
+    }
 }
