@@ -26,6 +26,12 @@ html {
     padding: 0;
     scroll-behavior: smooth;
     scroll-padding-top: var(--navbar-height);
+    height: 100%;
+}
+
+/* Add a main container style to ensure content takes up available space */
+main {
+    flex: 1; /* This will make main take up all available space, pushing footer to bottom */
 }
 
 body {
@@ -36,6 +42,9 @@ body {
     line-height: 1.6;
     padding-top: 0; /* Removed padding-top to eliminate gap */
     background-color: var(--bg-color);
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
 }
 
 .hero-section {
@@ -817,7 +826,10 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
 .footer-links a {
@@ -829,51 +841,19 @@ footer {
 .social-icons a {
     color: var(--white);
     font-size: 24px;
-    transition: all var(--transition-fast);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 50px;
     height: 50px;
+    text-decoration: none;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
     margin: 0 10px;
 }
 
 .social-icons {
     margin: 20px 0;
-}
-
-.social-icons a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    opacity: 0;
-    transition: opacity var(--transition-fast);
-    z-index: -1;
-    transform: scale(0.5);
-    border-radius: 50%;
-}
-
-.social-icons a:hover {
-    color: var(--white);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.social-icons a:hover::before {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.social-icons a i {
-    transition: transform var(--transition-fast);
 }
 
 .social-icons a:hover i {
